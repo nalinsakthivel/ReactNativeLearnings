@@ -14,7 +14,7 @@ export const useHome = () => {
   };
 
   const onProductPress = () => {
-    console.log('Hello>>>>>123');
+    // console.log('Hello>>>>>123');
   };
   return {onProductList: onProductGet, onProductPress, product};
 };
