@@ -9,7 +9,7 @@ const HttpClient = async (url: string, method: Method, data: any) => {
   console.log('URL', url);
   console.log('options', JSON.stringify(options));
 
-  const response = axios(url, options);
+  const response = await axios(url, options);
   return response;
 };
 

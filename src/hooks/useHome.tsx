@@ -8,7 +8,8 @@ export const useHome = () => {
   const [product, setProduct] = useState<ProductPodt>();
   const onProductGet = async () => {
     const Url: string = ApiConstants.BASE_URL + ApiConstants.PRODUCT_LIST;
-    const res = await HttpClient(Url, 'GET');
+    const data = null;
+    const res = await HttpClient(Url, 'GET', data);
     setProduct(res.data);
     return res.data;
   };

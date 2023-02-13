@@ -25,7 +25,6 @@ const withSecurityScreenIOS = Wrapped => {
 
       this.setState({showSecurityScreen});
     };
-
     render() {
       return this.state.showSecurityScreen ? (
         <SecurityScreen />

@@ -1,11 +1,4 @@
-import {
-  FlatList,
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 
 import {useHome} from '../hooks/useHome';
@@ -13,15 +6,13 @@ import {colours} from '../values/colours';
 import {ProductPodt} from '../viewmodel/HomeViewModel';
 import Card from '../componenets/card';
 
-const bgImage = require('../values/assets/image/bgImages.png');
-
 const Home = () => {
   const {onProductList, product} = useHome();
   const prod: ProductPodt = product;
 
   useEffect(() => {
     onProductList();
-  }, []);
+  }, [onProductList]);
 
   return (
     <SafeAreaView style={styles.mainContainer}>
