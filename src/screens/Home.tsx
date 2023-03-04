@@ -1,3 +1,4 @@
+jest.useFakeTimers();
 import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 
@@ -8,14 +9,14 @@ import Card from '../componenets/card';
 
 const Home = () => {
   const {onProductList, product} = useHome();
-  const prod: ProductPodt = product;
+  const prod: ProductPodt[] = product;
 
   useEffect(() => {
     onProductList();
   }, [onProductList]);
 
   return (
-    <SafeAreaView style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer} testID={'Home'}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Flat List</Text>
       </View>
