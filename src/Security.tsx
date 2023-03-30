@@ -3,10 +3,10 @@ import {AppState, Platform, View} from 'react-native';
 
 const SecurityScreen = () => <View />;
 
-const showSecurityScreenFromAppState = appState =>
+const showSecurityScreenFromAppState = (appState: string) =>
   ['background', 'inactive'].includes(appState);
 
-const withSecurityScreenIOS = Wrapped => {
+const withSecurityScreenIOS = (Wrapped: JSX.IntrinsicAttributes) => {
   return class WithSecurityScreen extends React.Component {
     state = {
       showSecurityScreen: showSecurityScreenFromAppState(AppState.currentState),
@@ -20,7 +20,7 @@ const withSecurityScreenIOS = Wrapped => {
       AppState.removeEventListener('change', this.onChangeAppState);
     }
 
-    onChangeAppState = nextAppState => {
+    onChangeAppState = (nextAppState: any) => {
       const showSecurityScreen = showSecurityScreenFromAppState(nextAppState);
 
       this.setState({showSecurityScreen});
@@ -35,7 +35,7 @@ const withSecurityScreenIOS = Wrapped => {
   };
 };
 
-const withSecurityScreenAndroid = Wrapped => Wrapped;
+const withSecurityScreenAndroid = (Wrapped: any) => Wrapped;
 
 export const withSecurityScreen =
   Platform.OS === 'ios' ? withSecurityScreenIOS : withSecurityScreenAndroid;

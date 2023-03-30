@@ -1,25 +1,34 @@
-jest.useFakeTimers();
-import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+// jest.useFakeTimers();
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import React from 'react';
 
 import {useHome} from '../hooks/useHome';
 import {colours} from '../values/colours';
 import {ProductPodt} from '../viewmodel/HomeViewModel';
 import Card from '../componenets/card';
+import {t} from 'i18next';
 
 const Home = () => {
-  const {onProductList, product} = useHome();
+  const {product, setLanguage, language} = useHome();
   const prod: ProductPodt[] = product;
-
-  useEffect(() => {
-    onProductList();
-  }, [onProductList]);
 
   return (
     <SafeAreaView style={styles.mainContainer} testID={'Home'}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>Flat List</Text>
-      </View>
+      <TouchableOpacity
+        style={styles.headerContainer}
+        onPress={() => {
+          language === 'tn' ? setLanguage('en') : setLanguage('tn');
+        }}>
+        <Text style={styles.headerText}>{t('hello').toString()}</Text>
+      </TouchableOpacity>
       <FlatList data={prod} renderItem={(item: any) => <Card list={item} />} />
     </SafeAreaView>
   );

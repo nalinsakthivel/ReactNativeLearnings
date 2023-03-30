@@ -1,11 +1,12 @@
 import React from 'react';
 
 // import Login from './screens/Login';
-import Home from './screens/Home';
+// import Home from './screens/Home';
+import Login from './screens/Login';
 // import {withSecurityScreen} from './Security';
 
 const App = () => {
-  return <Home />;
+  return <Login />;
 };
 
 export default App;
