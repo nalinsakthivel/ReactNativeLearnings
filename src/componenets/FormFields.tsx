@@ -1,8 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import {t} from 'i18next';
 import React, {useState} from 'react';
 import {
   StyleProp,
-  StyleSheet,
   Text,
   TextInput,
   TextInputProps,
@@ -19,9 +19,6 @@ import {formattedMonthNameDate} from '../utils/CommonUtils';
 import MyColors from '../values/colours';
 import {KeyValueViewModel} from '../viewmodel/KeyValueModel';
 
-interface DataProps {
-  maxLength: number;
-}
 interface TextInputFieldProps {
   inputProps: TextInputProps;
   errorTxt: string | null | undefined;
@@ -62,7 +59,9 @@ export const TextInputField = ({
         {...inputProps}
       />
       {errorTxt ? (
-        <Text style={[{color: MyColors.red}, errorStyle]}>{errorTxt} </Text>
+        <Text style={[{color: MyColors.red, marginLeft: 20}, errorStyle]}>
+          {errorTxt}{' '}
+        </Text>
       ) : null}
     </View>
   );
@@ -274,7 +273,7 @@ export const CheckBoxGroupInputField = (
           if (props.value && !props.value.includes(value)) {
             props.onChange([...props.value, value]);
           } else {
-            const v = props.value.filter(v => v !== value);
+            const v = props.value.filter((V: any) => V !== value);
             props.onChange(v);
           }
         }}
@@ -319,13 +318,6 @@ export const CheckBoxGroupInputField2 = (props: any) => {
   );
 };
 
-interface InputProps {
-  value: string;
-  onChange: (v: any) => void;
-}
-interface MetaProps {
-  error?: string;
-}
 interface DropdownInputFieldProps {
   onChange: (v: any) => void;
   listItems: KeyValueViewModel[];
@@ -470,26 +462,3 @@ const CheckBoxGroup = ({listItem, values, onChange, readOnly}: any) => {
     </View>
   );
 };
-
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 2,
-    borderColor: MyColors.secondary,
-    borderRadius: 5,
-    // to ensure the text is never behind the icon
-  },
-  inputAndroid: {
-    fontSize: 40,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 2,
-    borderColor: MyColors.secondary,
-    borderRadius: 8,
-    height: 50,
-
-    // to ensure the text is never behind the icon
-  },
-});

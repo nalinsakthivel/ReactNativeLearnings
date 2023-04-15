@@ -6,8 +6,6 @@ import {colours} from '../values/colours';
 const Card = (props: any) => {
   const list: ProductPodt = props.list.item;
 
-  // console.log(list);
-
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Text style={styles.heading}>Name :</Text>

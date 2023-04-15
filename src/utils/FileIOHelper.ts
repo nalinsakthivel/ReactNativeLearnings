@@ -6,11 +6,8 @@ export class FileIOHelper {
     const filePath = `${RNFS.DownloadDirectoryPath}/${
       new Date().getTime() + '-' + name
     }.jpg`;
-    console.log('>>>>0003', filePath);
     const imageBase64 = await RNFS.readFile(image, 'base64');
-    console.log('>>>>>0004');
-    const res = await RNFetchBlob.fs.writeFile(filePath, imageBase64, 'base64');
-    console.log('>>>>>0005');
+    await RNFetchBlob.fs.writeFile(filePath, imageBase64, 'base64');
 
     return filePath;
   }

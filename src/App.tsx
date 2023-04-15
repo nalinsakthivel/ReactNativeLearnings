@@ -1,12 +1,13 @@
 import React from 'react';
-
-// import Login from './screens/Login';
-// import Home from './screens/Home';
-import Login from './screens/Login';
+import Router from './routes/Router';
 // import {withSecurityScreen} from './Security';
 
 const App = () => {
-  return <Login />;
+  return (
+    <>
+      <Router />
+    </>
+  );
 };
 
 export default App;

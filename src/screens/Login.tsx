@@ -1,12 +1,20 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {colours} from '../values/colours';
+import MyColors, {colours} from '../values/colours';
 import {Controller} from 'react-hook-form';
 import useLogin from '../hooks/useLogin';
 import {TextInputField} from '../componenets/FormFields';
+import {NavigationParamList} from '../routes/NaviagatioUtil';
+import {RouteProp} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-const Login = () => {
-  const {control, handleSubmit, onSubmit} = useLogin();
+export type LoginScreenProps = {
+  navigation: NativeStackNavigationProp<NavigationParamList, 'LoginScreen'>;
+  route: RouteProp<NavigationParamList, 'LoginScreen'>;
+};
+
+const LoginScreen = (props: LoginScreenProps) => {
+  const {control, handleSubmit, onSubmit} = useLogin(props);
 
   return (
     <View style={styles.mainContainer}>
@@ -21,28 +29,65 @@ const Login = () => {
         Login
       </Text>
       <Controller
-        name="login"
+        name="userName"
         control={control}
         render={({field: {onChange, value}, fieldState: {error}}) => (
           <TextInputField
             inputProps={{
-              placeholder: '',
+              placeholder: 'Enter Username',
               value: value,
               onChangeText: onChange,
               editable: true,
+              style: {
+                width: '90%',
+                borderColor: colours.Black,
+                borderWidth: 1,
+                borderRadius: 5,
+                alignSelf: 'center',
+              },
             }}
             errorTxt={error?.message?.toString()}
           />
         )}
       />
-      <TouchableOpacity onPress={handleSubmit(onSubmit)}>
+      <Controller
+        name="password"
+        control={control}
+        render={({field: {onChange, value}, fieldState: {error}}) => (
+          <TextInputField
+            inputProps={{
+              placeholder: 'Enter password',
+              value: value,
+              onChangeText: onChange,
+              editable: true,
+              style: {
+                width: '90%',
+                borderColor: colours.Black,
+                borderWidth: 1,
+                borderRadius: 5,
+                alignSelf: 'center',
+                marginTop: 20,
+              },
+            }}
+            errorTxt={error?.message?.toString()}
+          />
+        )}
+      />
+      <TouchableOpacity
+        onPress={handleSubmit(onSubmit)}
+        style={{
+          marginTop: 30,
+          borderWidth: 1,
+          borderRadius: 30,
+          width: '35%',
+          height: 40,
+          justifyContent: 'center',
+          alignSelf: 'center',
+          backgroundColor: MyColors.disableGrey,
+        }}>
         <Text
           style={{
-            color: colours.Black,
             textAlign: 'center',
-            marginVertical: 50,
-            fontWeight: 'bold',
-            fontSize: 25,
           }}>
           Login
         </Text>
@@ -51,7 +96,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   mainContainer: {

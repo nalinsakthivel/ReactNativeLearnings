@@ -15,9 +15,17 @@ import {colours} from '../values/colours';
 import {ProductPodt} from '../viewmodel/HomeViewModel';
 import Card from '../componenets/card';
 import {t} from 'i18next';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RouteProp} from '@react-navigation/native';
+import {NavigationParamList} from '../routes/NaviagatioUtil';
 
-const Home = () => {
-  const {product, setLanguage, language} = useHome();
+export type HomeScreenProps = {
+  navigation: NativeStackNavigationProp<NavigationParamList, 'HomeScreen'>;
+  route: RouteProp<NavigationParamList, 'HomeScreen'>;
+};
+
+const HomeScreen = (props: HomeScreenProps) => {
+  const {product, setLanguage, language} = useHome(props);
   const prod: ProductPodt[] = product;
 
   return (
@@ -34,7 +42,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   mainContainer: {

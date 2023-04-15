@@ -29,7 +29,7 @@ export const createOneButtonAlertCallback = ({
   title,
   msg,
   onClick,
-  positiveButtonTxt = t('p_ok'),
+  positiveButtonTxt = t('p_ok').toString(),
 }: CreateOneButtonAlertCallbackProps) => {
   return Alert.alert(title, msg, [
     {
@@ -52,8 +52,8 @@ export const createTwoButtonAlert = ({
   onClick,
 }: CreateTwoButtonAlertProps) => {
   return Alert.alert(title, msg, [
-    {text: t('p_cancel'), onPress: () => console.log('OK Pressed')},
-    {text: t('p_ok'), onPress: () => onClick()},
+    {text: t('p_cancel').toString(), onPress: () => console.log('OK Pressed')},
+    {text: t('p_ok').toString(), onPress: () => onClick()},
   ]);
 };
 interface CreateTwoButtonAlertProps {
@@ -66,7 +66,9 @@ export const createTwoButtonAlert2 = ({
   msg,
   onClick,
 }: CreateTwoButtonAlertProps) => {
-  return Alert.alert(title, msg, [{text: t('p_ok'), onPress: () => onClick()}]);
+  return Alert.alert(title, msg, [
+    {text: t('p_ok').toString(), onPress: () => onClick()},
+  ]);
 };
 export const alertPremission = (permissionName: string) => {
   Alert.alert(
@@ -77,9 +79,9 @@ export const alertPremission = (permissionName: string) => {
       {
         text: 'OK',
         onPress: () => {
-          Platform.OS == 'android'
+          Platform.OS === 'android'
             ? Linking.openSettings()
-            : Linking.openURL('app-settings:').then(v => {});
+            : Linking.openURL('app-settings:').then(() => {});
         },
       },
     ],

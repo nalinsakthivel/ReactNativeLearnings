@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-shadow */
 // const jwtDecode = require('jwt-decode');
@@ -275,7 +276,7 @@ export const requestReadPermission = async () => {
 
 export const getDateDiffFromToday = (time: string): number => {
   let diffDays: number = 0;
-  if (!(time == null || time == '' || time.length < 11)) {
+  if (!(time == null || time === '' || time.length < 11)) {
     //Getting Date from the String using split >>>>23-Feb-2022 (12:58 pm)<<<<<<<
     let date1 = new Date(time.split(' ')[0]);
     let date2 = new Date();
@@ -341,10 +342,10 @@ export const Base64 = {
   },
 
   atob: (input: string = '') => {
-    let str = input.replace(/=+$/, '');
+    let str = input.replace(/[=]+$/, '');
     let output = '';
 
-    if (str.length % 4 == 1) {
+    if (str.length % 4 === 1) {
       throw new Error(
         "'atob' failed: The string to be decoded is not correctly encoded.",
       );
