@@ -6,8 +6,11 @@ import i18n from '../i18n';
 import {ProductPodt} from '../viewmodel/HomeViewModel';
 import {HomeScreenProps} from '../screens/Home';
 import LocalStore from '../utils/LocalStore';
+import {useNavigation} from '@react-navigation/native';
 
 export const useHome = (props: HomeScreenProps) => {
+  const navigation = useNavigation();
+
   const [language, setLanguage] = useState('tn');
 
   // console.log('lang', language);
@@ -29,9 +32,10 @@ export const useHome = (props: HomeScreenProps) => {
     return res.data;
   };
 
-  const onProductPress = () => {
-    // console.log('Hello>>>>>123');
+  const onProductPress = (id: any) => {
+    props.navigation.navigate('ProductDetailsScreen', {data: id});
   };
+
   return {
     onProductPress,
     product,

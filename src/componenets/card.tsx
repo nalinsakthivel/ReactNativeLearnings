@@ -3,9 +3,11 @@ import React from 'react';
 import {ProductPodt} from '../viewmodel/HomeViewModel';
 import {colours} from '../values/colours';
 
-const Card = (props: any) => {
-  const list: ProductPodt = props.list.item;
+interface CardProps {
+  list: ProductPodt;
+}
 
+const Card = ({list}: CardProps) => {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Text style={styles.heading}>Name :</Text>
