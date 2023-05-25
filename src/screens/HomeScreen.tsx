@@ -24,9 +24,10 @@ export type HomeScreenProps = {
 };
 
 const HomeScreen = (props: HomeScreenProps) => {
-  const {product, setLanguage, language, onProductPress} = useHome(props);
+  const {product, setLanguage, language, onProductPress, navigation} =
+    useHome(props);
   const prod: ProductPodt[] = product;
-  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.mainContainer} testID={'Home'}>
       <View

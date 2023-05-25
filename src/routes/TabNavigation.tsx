@@ -8,9 +8,9 @@ const Tab = createBottomTabNavigator();
 
 export function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName={'HS'}>
       <Tab.Screen
-        name="Home"
+        name="HS"
         component={HomeScreen}
         options={{
           headerShown: false,

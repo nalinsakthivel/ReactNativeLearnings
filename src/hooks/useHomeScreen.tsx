@@ -5,18 +5,21 @@ import HttpClient from '../httpsClient/HttpsClient';
 import i18n from '../i18n';
 import {ProductPodt} from '../viewmodel/HomeViewModel';
 import {HomeScreenProps} from '../screens/HomeScreen';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import React from 'react';
 
 export const useHome = (props: HomeScreenProps) => {
+  const navigation = useNavigation();
+
   const [language, setLanguage] = useState('tn');
-
-  // console.log('lang', language);
-
   const [product, setProduct] = useState<ProductPodt[]>([]);
 
-  useEffect(() => {
-    i18n.changeLanguage(language).then(() => {});
-    onProductGet();
-  }, [language]);
+  useFocusEffect(
+    React.useCallback(() => {
+      i18n.changeLanguage(language).then(() => {});
+      onProductGet();
+    }, [language]),
+  );
 
   const onProductGet = async () => {
     const Url: string = ApiConstants.BASE_URL + ApiConstants.PRODUCT_LIST;
@@ -34,6 +37,7 @@ export const useHome = (props: HomeScreenProps) => {
     onProductPress,
     product,
     language,
+    navigation,
     setLanguage,
   };
 };
