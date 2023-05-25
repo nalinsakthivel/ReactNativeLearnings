@@ -1,41 +1,40 @@
-import React from 'react';
-import {AppState, Platform, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {AppState, Image, Platform, View} from 'react-native';
 
-const SecurityScreen = () => <View />;
+const SecurityScreen = () => (
+  <View>
+    <Image source={require('../src/values/assets/image/logo.png')} />
+  </View>
+);
 
 const showSecurityScreenFromAppState = (appState: string) =>
   ['background', 'inactive'].includes(appState);
 
 const withSecurityScreenIOS = (Wrapped: JSX.IntrinsicAttributes) => {
-  return class WithSecurityScreen extends React.Component {
-    state = {
-      showSecurityScreen: showSecurityScreenFromAppState(AppState.currentState),
-    };
+  return (props: JSX.IntrinsicAttributes) => {
+    const [showSecurityScreen, setShowSecurityScreen] = useState(
+      showSecurityScreenFromAppState(AppState.currentState),
+    );
 
-    componentDidMount() {
-      AppState.addEventListener('change', this.onChangeAppState);
-    }
+    useEffect(() => {
+      const onChangeAppState = (nextAppState: string) => {
+        const shouldShowSecurityScreen =
+          showSecurityScreenFromAppState(nextAppState);
+        setShowSecurityScreen(shouldShowSecurityScreen);
+      };
 
-    componentWillUnmount() {
-      AppState.removeEventListener('change', this.onChangeAppState);
-    }
+      AppState.addEventListener('change', onChangeAppState);
 
-    onChangeAppState = (nextAppState: any) => {
-      const showSecurityScreen = showSecurityScreenFromAppState(nextAppState);
+      return () => {
+        AppState.removeEventListener('change', onChangeAppState);
+      };
+    }, []);
 
-      this.setState({showSecurityScreen});
-    };
-    render() {
-      return this.state.showSecurityScreen ? (
-        <SecurityScreen />
-      ) : (
-        <Wrapped {...this.props} />
-      );
-    }
+    return showSecurityScreen ? <SecurityScreen /> : <Wrapped {...props} />;
   };
 };
 
-const withSecurityScreenAndroid = (Wrapped: any) => Wrapped;
+const withSecurityScreenAndroid = (Wrapped: JSX.IntrinsicAttributes) => Wrapped;
 
 export const withSecurityScreen =
   Platform.OS === 'ios' ? withSecurityScreenIOS : withSecurityScreenAndroid;

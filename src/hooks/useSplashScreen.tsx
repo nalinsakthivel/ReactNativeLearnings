@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect} from 'react';
-import {SplashScreenProps} from '../screens/Splash';
+import {SplashScreenProps} from '../screens/SplashScreen';
 import LocalStore from '../utils/LocalStore';
 
 export const useSplashScreen = (props: SplashScreenProps) => {

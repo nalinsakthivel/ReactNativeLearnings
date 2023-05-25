@@ -1,8 +1,9 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import MyColors, {colours} from '../values/colours';
 import {Controller} from 'react-hook-form';
-import useLogin from '../hooks/useLogin';
+import useLogin from '../hooks/useLoginScreen';
 import {TextInputField} from '../componenets/FormFields';
 import {NavigationParamList} from '../routes/NaviagatioUtil';
 import {RouteProp} from '@react-navigation/native';

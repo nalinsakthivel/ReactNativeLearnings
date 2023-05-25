@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   FlatList,
   SafeAreaView,
@@ -8,7 +9,7 @@ import {
 } from 'react-native';
 import React, {Key} from 'react';
 
-import {useHome} from '../hooks/useHome';
+import {useHome} from '../hooks/useHomeScreen';
 import {colours} from '../values/colours';
 import {ProductPodt} from '../viewmodel/HomeViewModel';
 import Card from '../componenets/Card';

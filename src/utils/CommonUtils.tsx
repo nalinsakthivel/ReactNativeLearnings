@@ -63,7 +63,7 @@ export const formattedMonthNameDateTime = (date: Date): string => {
 //   return (hour % 12 || 12) + ':' + minute + (hour < 24 ? 'AM' : 'PM');
 // };
 
-export const getTimeDifferenceFromCurrentDate = (date: Date): number => {
+export const getTimeDifferenceFromCurrentDate = (date: string): number => {
   var diffMs = Date.parse(date) - Date.parse(new Date());
   var hours = Math.abs(diffMs) / 36e5;
   return hours;

@@ -4,13 +4,9 @@ import ApiConstants from '../httpsClient/ApiConstants';
 import HttpClient from '../httpsClient/HttpsClient';
 import i18n from '../i18n';
 import {ProductPodt} from '../viewmodel/HomeViewModel';
-import {HomeScreenProps} from '../screens/Home';
-import LocalStore from '../utils/LocalStore';
-import {useNavigation} from '@react-navigation/native';
+import {HomeScreenProps} from '../screens/HomeScreen';
 
 export const useHome = (props: HomeScreenProps) => {
-  const navigation = useNavigation();
-
   const [language, setLanguage] = useState('tn');
 
   // console.log('lang', language);
@@ -23,8 +19,6 @@ export const useHome = (props: HomeScreenProps) => {
   }, [language]);
 
   const onProductGet = async () => {
-    const name = await LocalStore.getAuthToken();
-    console.log('name>>>>>', name);
     const Url: string = ApiConstants.BASE_URL + ApiConstants.PRODUCT_LIST;
     const data = null;
     const res = await HttpClient(Url, 'GET', data);

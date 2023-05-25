@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Animated, StyleProp, ViewStyle} from 'react-native';
 

@@ -1,4 +1,4 @@
-import {SettingsScreenProps} from '../screens/Settings';
+import {SettingsScreenProps} from '../screens/SettingsScreen';
 import LocalStore from '../utils/LocalStore';
 
 export const useSettingsScreen = (props: SettingsScreenProps) => {

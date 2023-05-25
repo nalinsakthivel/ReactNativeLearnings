@@ -1,5 +1,5 @@
 import {useForm} from 'react-hook-form';
-import {LoginScreenProps} from '../screens/Login';
+import {LoginScreenProps} from '../screens/LoginScreen';
 import LocalStore from '../utils/LocalStore';
 
 const useLogin = (props: LoginScreenProps) => {

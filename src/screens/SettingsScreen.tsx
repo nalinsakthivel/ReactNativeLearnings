@@ -1,9 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import {Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {NavigationParamList} from '../routes/NaviagatioUtil';
 import {RouteProp} from '@react-navigation/native';
-import {useSettingsScreen} from '../hooks/useSettings';
+import {useSettingsScreen} from '../hooks/useSettingsScreen';
 import {colours} from '../values/colours';
 
 export type SettingsScreenProps = {
