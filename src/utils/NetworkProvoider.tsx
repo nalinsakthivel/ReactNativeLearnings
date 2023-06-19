@@ -12,6 +12,7 @@ const NetInfoContext = createContext<NetInfoState | undefined>(undefined);
 export const useNetInfo = () => {
   return useContext(NetInfoContext);
 };
+
 export const NetworkProvoider: React.FC<PropsWithChildren> = ({children}) => {
   const [netInfo, setNetInfo] = useState<NetInfoState>();
 

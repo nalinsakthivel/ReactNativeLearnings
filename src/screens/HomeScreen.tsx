@@ -8,14 +8,12 @@ import {
   View,
 } from 'react-native';
 import React, {Key} from 'react';
-
 import {useHome} from '../hooks/useHomeScreen';
 import {colours} from '../values/colours';
-import {ProductPodt} from '../viewmodel/HomeViewModel';
 import Card from '../componenets/Card';
 import {t} from 'i18next';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RouteProp, useNavigation} from '@react-navigation/native';
+import {RouteProp} from '@react-navigation/native';
 import {NavigationParamList} from '../routes/NaviagatioUtil';
 
 export type HomeScreenProps = {
@@ -26,7 +24,6 @@ export type HomeScreenProps = {
 const HomeScreen = (props: HomeScreenProps) => {
   const {product, setLanguage, language, onProductPress, navigation} =
     useHome(props);
-  const prod: ProductPodt[] = product;
 
   return (
     <SafeAreaView style={styles.mainContainer} testID={'Home'}>
@@ -54,7 +51,7 @@ const HomeScreen = (props: HomeScreenProps) => {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={prod}
+        data={product}
         renderItem={(item: any, index: Key) => (
           <TouchableOpacity
             key={index}

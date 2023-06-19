@@ -70,6 +70,7 @@ export const createTwoButtonAlert2 = ({
     {text: t('p_ok').toString(), onPress: () => onClick()},
   ]);
 };
+
 export const alertPremission = (permissionName: string) => {
   Alert.alert(
     'Enable Permission',

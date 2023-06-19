@@ -7,7 +7,7 @@ import {RouteProp} from '@react-navigation/native';
 import {useSplashScreen} from '../hooks/useSplashScreen';
 import {colours} from '../values/colours';
 
-const image = require('../values/assets/image/logo.png');
+const image = require('../values/assets/images/logo.png');
 
 export type SplashScreenProps = {
   navigation: NativeStackNavigationProp<NavigationParamList, 'SplashScreen'>;

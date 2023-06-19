@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 import ApiConstants from '../httpsClient/ApiConstants';
 import HttpClient from '../httpsClient/HttpsClient';
@@ -23,8 +23,7 @@ export const useHome = (props: HomeScreenProps) => {
 
   const onProductGet = async () => {
     const Url: string = ApiConstants.BASE_URL + ApiConstants.PRODUCT_LIST;
-    const data = null;
-    const res = await HttpClient(Url, 'GET', data);
+    const res = await HttpClient({url: Url, method: 'GET'});
     setProduct(res.data);
     return res.data;
   };

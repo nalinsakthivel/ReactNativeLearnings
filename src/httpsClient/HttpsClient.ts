@@ -1,15 +1,33 @@
 import axios, {Method, AxiosRequestConfig} from 'axios';
-
-const HttpClient = async (url: string, method: Method, data: any) => {
+class HttpClientProps {
+  url!: string;
+  method!: Method;
+  data?: any;
+}
+export const HttpClient = async (props: HttpClientProps): Promise<any> => {
   var options: AxiosRequestConfig = {};
 
-  options.method = method;
-  options.data = data;
+  // const token = await getAuthToken();
+  // if (token !== '') {
+  //   options.headers = {Authorization: 'Bearer ' + token};
+  // }
 
-  console.log('URL>>', url);
-  console.log('options>>', JSON.stringify(options));
+  options.method = props.method;
+  if (props.data) {
+    options.data = props.data;
+  }
 
-  const response = await axios(url, options);
+  //let url = ApiConstant.BASE_URL + props.url;
+  // let baseURI = await getAppURL();
+
+  let url = props.url;
+  console.log('>>>>>>>>>url', url, options);
+
+  const response = axios(url, options).catch(e => {
+    console.log('>>>>>e>>', e);
+    throw e;
+  });
+
   return response;
 };
 

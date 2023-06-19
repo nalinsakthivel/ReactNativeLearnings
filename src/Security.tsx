@@ -3,7 +3,7 @@ import {AppState, Image, Platform, View} from 'react-native';
 
 const SecurityScreen = () => (
   <View>
-    <Image source={require('../src/values/assets/image/logo.png')} />
+    <Image source={require('./values/assets/images/logo.png')} />
   </View>
 );
 
