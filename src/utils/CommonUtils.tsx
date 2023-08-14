@@ -13,6 +13,7 @@ import {
   ToastAndroid,
   Platform,
   Alert,
+  Dimensions,
 } from 'react-native';
 import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import RNFS from 'react-native-fs';
@@ -362,4 +363,13 @@ export const Base64 = {
 
     return output;
   },
+};
+
+export const getResponsive = (
+  valuesInPixels: number,
+  dimesnsionOfDevice: string | number,
+) => {
+  const dimension = Dimensions.get('window')[dimesnsionOfDevice];
+  const value = valuesInPixels / dimension;
+  return dimension * value;
 };
