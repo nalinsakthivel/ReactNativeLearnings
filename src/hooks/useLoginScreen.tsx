@@ -1,9 +1,12 @@
 import {useForm} from 'react-hook-form';
 import {LoginScreenProps} from '../screens/LoginScreen';
 import LocalStore from '../utils/LocalStore';
+import useAuthStore from '../zustand/Store';
 
 const useLogin = (props: LoginScreenProps) => {
   const {handleSubmit, control, watch, setValue, setError} = useForm();
+
+  const {setAccessToken} = useAuthStore();
 
   const onSubmit = async (values: any) => {
     if (values.userName) {
@@ -23,6 +26,7 @@ const useLogin = (props: LoginScreenProps) => {
       });
     }
     if (values.userName && values.password) {
+      setAccessToken(values.userName);
       await LocalStore.setAuthToken(values.userName);
       props.navigation.navigate('HomeScreen');
     }

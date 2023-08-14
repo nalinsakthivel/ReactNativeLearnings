@@ -7,9 +7,13 @@ import {ProductPodt} from '../viewmodel/HomeViewModel';
 import {HomeScreenProps} from '../screens/HomeScreen';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React from 'react';
+import useAuthStore from '../zustand/Store';
 
 export const useHome = (props: HomeScreenProps) => {
   const navigation = useNavigation();
+
+  const {accessToken} = useAuthStore();
+  console.log('accessToken :>> ', accessToken);
 
   const [language, setLanguage] = useState('tn');
   const [product, setProduct] = useState<ProductPodt[]>([]);
