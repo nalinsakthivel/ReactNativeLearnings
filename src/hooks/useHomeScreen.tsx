@@ -8,6 +8,7 @@ import {HomeScreenProps} from '../screens/HomeScreen';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React from 'react';
 import useAuthStore from '../zustand/Store';
+import {readAllUsers} from '../database/DBHelper';
 
 export const useHome = (props: HomeScreenProps) => {
   const navigation = useNavigation();
@@ -21,9 +22,24 @@ export const useHome = (props: HomeScreenProps) => {
   useFocusEffect(
     React.useCallback(() => {
       i18n.changeLanguage(language).then(() => {});
-      onProductGet();
+      init();
     }, [language]),
   );
+
+  const init = async () => {
+    await onProductGet();
+    await readData();
+  };
+
+  const readData = () => {
+    readAllUsers()
+      .then(res => {
+        console.log('res :>> ', res);
+      })
+      .catch(e => {
+        console.log('e :>> ', e);
+      });
+  };
 
   const onProductGet = async () => {
     const Url: string = ApiConstants.BASE_URL + ApiConstants.PRODUCT_LIST;
